@@ -1,3 +1,5 @@
-<h1>Demo</h1>
+<h1>Todo list: {{ todoListService.length() }}</h1>
 
-<router-outlet />
+<app-todo-list />
+
+<button (click)="todoListService.addTodo(99).subscribe()">Add todo</button>
