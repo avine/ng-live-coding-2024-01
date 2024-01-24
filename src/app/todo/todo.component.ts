@@ -1,18 +1,16 @@
 import { JsonPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { ActivatedRoute, RouterLink, RouterOutlet } from '@angular/router';
-import { map } from 'rxjs';
+import { Component, Input, inject } from '@angular/core';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-todo',
   standalone: true,
   imports: [RouterOutlet, RouterLink, JsonPipe],
   templateUrl: './todo.component.html',
-  styleUrl: './todo.component.css'
+  styleUrl: './todo.component.css',
 })
 export default class TodoComponent {
-  activatedRoute = inject(ActivatedRoute);
+  @Input() myTodo: any;
 
-  todo = toSignal(this.activatedRoute.data.pipe(map(({ myTodo }) => myTodo)), { initialValue: '' });
+  @Input() id!: string;
 }
